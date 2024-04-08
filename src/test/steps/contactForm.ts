@@ -32,7 +32,27 @@ When('a user enters the "{string}" into the Contact Email field',{timeout: 60 * 
     await contactForm.setEmail(email);
 })
 
-Then('the Contact form should be filled with the "{string}"',async (email) => {
+When('a user enters the "{string}" into the Contact Name field',{timeout: 60 * 1000},async (name) => {
+    
+    await contactForm.setContactName(name);
+})
+
+When('a user enters the "{string}" into the Message text area',async (message) => {
+    
+    await contactForm.setMessage(message);
+})
+
+Then('the Contact Email field should be filled with the "{string}"',async (email) => {
     
     expect(await contactForm.getEmail()).toEqual(email);
+})
+
+Then('the Contact Name field should be filled with the "{string}"',async (name) => {
+    
+    expect(await contactForm.getContactName()).toEqual(name);
+})
+
+Then('the Message text area should be filled with the "{string}"',async (message) => {
+    
+    expect(await contactForm.getMessage()).toEqual(message);
 })
