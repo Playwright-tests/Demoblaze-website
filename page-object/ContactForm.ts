@@ -38,11 +38,11 @@ export class ContactForm extends ModalDialog {
 
     async getContactName(): Promise<string | null> {
 
-        return await this.contactNameField.textContent();
+        return await this.contactNameField.inputValue();
     }
 
     async getMessage(): Promise<string | null> {
 
-        return await this.messageTextArea.textContent();
+        return await this.messageTextArea.inputValue();
     }
 }
