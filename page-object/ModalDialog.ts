@@ -18,4 +18,9 @@ export class ModalDialog extends BasePage {
 
         return this.body;
     }
+
+    getModalContentSelector(): string {
+
+        return this.modalContentSelector;
+    }
 }
