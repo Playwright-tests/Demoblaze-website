@@ -3,10 +3,9 @@ import { Page, expect } from "@playwright/test";
 import { MainMenu } from "../../../page-object/MainMenu";
 import { initializePage } from "../../../config/browserUtils";
 import { LoginForm } from "../../../page-object/LoginForm";
-import { URL } from "../../../enums/enums";
+import { navigateMainMenu } from "../../../support/navigateMainMenu";
 
 let page: Page;
-let mainMenu: MainMenu;
 let loginForm: LoginForm;
 let expectedMaskedPassword: string;
 
@@ -15,7 +14,6 @@ setDefaultTimeout(30 * 60 * 1000);
 Before(async () => {
     
     page = await initializePage();
-    mainMenu = new MainMenu(page);
     loginForm = new LoginForm(page);
 })
 
@@ -26,8 +24,7 @@ After(async () => {
 
 Given('the Login form is open',{timeout: 30 * 60 * 1000},async function () {
     
-    await mainMenu.goto(URL.HOME_PAGE);
-    await mainMenu.clickLink('Log in');
+    await navigateMainMenu(page, 'Log in')
 });
 
 When('a user enters the "{string}" into the Username field',async function (username) {
@@ -79,6 +76,7 @@ Then('the name of user link on the main menu should be visible',async () => {
 
 Then('the name of user link text should be "{string}"',async (link) => {
     
+    const mainMenu = new MainMenu(page);
     await expect(mainMenu.getNameOfUserLinkLocator()).toHaveText(link);
 })
 
