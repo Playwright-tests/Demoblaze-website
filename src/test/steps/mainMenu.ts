@@ -1,20 +1,22 @@
-import { Given, When, Then, BeforeAll, AfterAll } from "@cucumber/cucumber";
+import { Given, When, Then, Before, After, setDefaultTimeout } from "@cucumber/cucumber";
 import { Page, expect } from "@playwright/test";
 import { MainMenu } from "../../../page-object/MainMenu";
-import { BrowserName, URL } from "../../../enums/enums";
+import { URL } from "../../../enums/enums";
 import { ModalDialog } from "../../../page-object/ModalDialog";
 import { initializePage } from "../../../config/browserUtils";
 
 let page: Page;
 let mainMenu: MainMenu;
 
-BeforeAll({timeout: 60 * 1000},async () => {
+setDefaultTimeout(30 * 60 * 1000);
+
+Before({timeout: 60 * 1000},async () => {
     
     page = await initializePage();
     mainMenu = new MainMenu(page);
 })
 
-AfterAll(async () => {
+After(async () => {
     
     await page.close();
 })
