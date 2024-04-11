@@ -12,7 +12,11 @@
   "devDependencies": {
     "@cucumber/cucumber": "^10.3.2",
     "@playwright/test": "^1.43.0",
-    "@types/node": "^20.12.5",
-    "ts-node": "^10.9.2"
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.7",
+    "allure-commandline": "^2.28.0",
+    "allure-cucumberjs": "^2.15.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
   }
 }
