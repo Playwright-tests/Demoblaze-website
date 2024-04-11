@@ -1,10 +1,7 @@
-const path = require("path");
 
-module.exports = {
+const config = {
 
-    "default": {
-
-        format: ["progress-bar"],
+        "format": ['progress-bar'],
 
         "formatOptions": {
             "snippetInterface": "async-await"
@@ -22,5 +19,8 @@ module.exports = {
         ],
         "parallel": 1,
         "tags": "@inputs"
-    }
 }
+
+config.format.push("file://C:/Projekty/Testowanie/Demoblaze/reporter.js");
+
+export default config;
