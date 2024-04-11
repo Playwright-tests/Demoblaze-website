@@ -27,12 +27,12 @@ Feature: Login form
 
   @login
   Scenario Outline: Login to account using correct credentials
-    When a user enters the ""username"" into the Username field
-    And a user enters the ""password"" into the Password field
+    When a user enters the ""axi"" into the Username field
+    And a user enters the ""wueZYA3gftJUD@6"" into the Password field
     And clicks the "Log in" button
     Then the Login form should be closed
     And the name of user link on the main menu should be visible
-    And the name of user link text should be ""Welcome username""
+    And the name of user link text should be ""Welcome axi""
 
   @login
   Scenario Outline: Login to account using an incorrect username
@@ -42,12 +42,12 @@ Feature: Login form
     Then the Login form should be still opened
 
     Examples: 
-      | username | password |
-      | "usr_1"  | "pass_1" |
-      | "usr_2"  | "pass_2" |
-      | "usr_3"  | "pass_3" |
-      | "usr_4"  | "pass_4" |
-      | "usr_5"  | "pass_5" |
+      | username | password          |
+      | "AXI"    | "wueZYA3gftJUD@6" |
+      | "aXi"    | "wueZYA3gftJUD@6" |
+      | "AxI"    | "wueZYA3gftJUD@6" |
+      | "Axi"    | "wueZYA3gftJUD@6" |
+      | "axI"    | "wueZYA3gftJUD@6" |
 
   @login
   Scenario Outline: Login to account using an incorrect password
@@ -57,20 +57,20 @@ Feature: Login form
     Then the Login form should be still opened
 
     Examples: 
-      | username | password |
-      | "usr_1"  | "pass_1" |
-      | "usr_2"  | "pass_2" |
-      | "usr_3"  | "pass_3" |
-      | "usr_4"  | "pass_4" |
+      | username | password          |
+      | "axi"    | "pass"            |
+      | "axi"    | "wueZYA3gftJUD@6" |
+      | "axi"    | "WUEzya3GFTjud@6" |
+      | "axi"    | "wueZYA3gfJUD@6"  |
 
   @login
   Scenario: Login to account missing an username
-    When a user enters the ""password"" into the Password field
+    When a user enters the ""wueZYA3gftJUD@6"" into the Password field
     And clicks the "Log in" button
     Then the Login form should be still opened
 
   @login
   Scenario: Login to account missing a password
-    When a user enters the ""username"" into the Username field
+    When a user enters the ""axi"" into the Username field
     And clicks the "Log in" button
     Then the Login form should be still opened
