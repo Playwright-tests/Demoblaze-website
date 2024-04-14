@@ -1,10 +1,8 @@
 import { ICustomWorld } from "../support/customWorld";
 import { When, Then, setDefaultTimeout } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { objectTypes } from "../support/config";
 import { ModalDialog } from "../../../page-object/ModalDialog";
 
-objectTypes.object = ['MainMenu'];
 
 setDefaultTimeout(30 * 60 * 1000);
 
@@ -20,6 +18,6 @@ Then('the "{string}" page should be opened',{timeout: 60 * 1000},async function 
 
 Then('the "{string}" form should be displayed',async function (this: ICustomWorld, headerText) {
   
-    const modaDialog = new ModalDialog(this.mainMenu!.getPage(), headerText);
+    const modaDialog = new ModalDialog(this.page!, headerText);
     await expect(modaDialog.getBodyLocator()).toBeVisible({timeout: 3000});
 })
