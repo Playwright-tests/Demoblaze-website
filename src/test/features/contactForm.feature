@@ -1,7 +1,10 @@
 Feature: The "New message" form
 
+  Background:
+    Given the New message form is open 
+
+@this
   Scenario Outline: Verification of the input of the Contact Email field
-    Given the New message form is open
     When a user enters the "<email>" into the Contact Email field
     Then the Contact Email field should be filled with the "<email>"
 
@@ -11,7 +14,6 @@ Feature: The "New message" form
       | "ppa@domain.com" |
 
   Scenario Outline: Verification of the input of the Contact Name field
-    Given the New message form is open
     When a user enters the "<name>" into the Contact Name field
     Then the Contact Name field should be filled with the "<name>"
 
@@ -22,7 +24,6 @@ Feature: The "New message" form
       | "Anne"   |
 
   Scenario Outline: Verification of the input of the Message text area
-    Given the New message form is open
     When a user enters the "<message>" into the Message text area
     Then the Message text area should be filled with the "<message>"
 
