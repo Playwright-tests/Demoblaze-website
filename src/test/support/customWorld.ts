@@ -4,6 +4,7 @@ import * as messages from "@cucumber/messages";
 import { MainMenu } from "../../../page-object/MainMenu";
 import { LoginForm } from "../../../page-object/LoginForm";
 import { ModalDialog } from "../../../page-object/ModalDialog";
+import { ContactForm } from "../../../page-object/ContactForm";
 
 export interface ICustomWorld extends World {
 
@@ -17,8 +18,8 @@ export interface ICustomWorld extends World {
     playwrightOptions?: PlaywrightTestOptions
 
     mainMenu?: MainMenu
-    modalDialog?: ModalDialog
     loginForm?: LoginForm
+    contactForm?: ContactForm
 }
 
 export class CustomWorld extends World implements ICustomWorld {
@@ -30,6 +31,7 @@ export class CustomWorld extends World implements ICustomWorld {
 
     mainMenu?: MainMenu;
     loginForm?: LoginForm;
+    contactForm?: ContactForm;
 
     debug = false
 }
