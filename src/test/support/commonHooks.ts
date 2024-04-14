@@ -1,10 +1,9 @@
 import { After, AfterAll, Before, BeforeAll } from "@cucumber/cucumber";
 import { ICustomWorld } from "./customWorld";
 import { chromium, ChromiumBrowser, firefox, FirefoxBrowser, webkit, WebKitBrowser } from "@playwright/test";
-import { browserConfig, browserOptions, objectTypes } from "./config";
+import { browserConfig, browserOptions } from "./config";
 import { MainMenu } from "../../../page-object/MainMenu";
 import { LoginForm } from "../../../page-object/LoginForm";
-import { ModalDialog } from "../../../page-object/ModalDialog";
 import { ContactForm } from "../../../page-object/ContactForm";
 
 let browser: ChromiumBrowser | FirefoxBrowser | WebKitBrowser;

@@ -7,8 +7,3 @@ export const browserOptions = {
 
     headless: false
 }
-
-export const objectTypes = {
-
-    object: [] as string[]
-}

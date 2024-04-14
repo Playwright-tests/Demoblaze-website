@@ -3,7 +3,6 @@ import { BrowserContext, Page, PlaywrightTestOptions } from "@playwright/test";
 import * as messages from "@cucumber/messages";
 import { MainMenu } from "../../../page-object/MainMenu";
 import { LoginForm } from "../../../page-object/LoginForm";
-import { ModalDialog } from "../../../page-object/ModalDialog";
 import { ContactForm } from "../../../page-object/ContactForm";
 
 export interface ICustomWorld extends World {
