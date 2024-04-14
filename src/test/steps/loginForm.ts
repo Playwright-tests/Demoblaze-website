@@ -6,7 +6,7 @@ setDefaultTimeout(30 * 60 * 1000);
 let expectedMaskedPassword: string = '';
 
 Given('the Login form is open',{timeout: 30 * 60 * 1000},async function (this: ICustomWorld) {
-    
+
     await this.page!.goto(this.parameters.baseURL);
     await this.mainMenu?.clickLink('Log in');
 });
