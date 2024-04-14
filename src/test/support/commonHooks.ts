@@ -4,6 +4,8 @@ import { chromium, ChromiumBrowser, firefox, FirefoxBrowser, webkit, WebKitBrows
 import { browserConfig, browserOptions, objectTypes } from "./config";
 import { MainMenu } from "../../../page-object/MainMenu";
 import { LoginForm } from "../../../page-object/LoginForm";
+import { ModalDialog } from "../../../page-object/ModalDialog";
+import { ContactForm } from "../../../page-object/ContactForm";
 
 let browser: ChromiumBrowser | FirefoxBrowser | WebKitBrowser;
 
@@ -27,12 +29,9 @@ Before(async function (this: ICustomWorld) {
     this.page = await this.context.newPage();
     this.debug = true;
 
-    for(const obj of objectTypes.object) {
-        switch(obj) {
-            case 'MainMenu': this.mainMenu = new MainMenu(this.page!);
-            case 'LoginForm': this.loginForm = new LoginForm(this.page!);
-        }
-    }
+    this.mainMenu = new MainMenu(this.page!);
+    this.loginForm = new LoginForm(this.page!);
+    this.contactForm = new ContactForm(this.page!);
 })
 
 After(async function (this: ICustomWorld) {
