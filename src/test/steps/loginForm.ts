@@ -29,7 +29,14 @@ When('clicks the "Close" button',async function (this: ICustomWorld) {
 
 When('clicks the "Log in" button',async function (this: ICustomWorld) {
     
+    this.page!.once('dialog', async (dialog) => {
+        
+        this.setMessage(dialog.message());
+        await dialog.dismiss();
+    })
+
     await this.loginForm?.clickLoginButton();
+    await this.page!.waitForTimeout(500);
 })
 
 Then('the Username field should be filled with the "{string}"', async function (this: ICustomWorld, username) {
