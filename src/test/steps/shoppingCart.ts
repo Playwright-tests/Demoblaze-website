@@ -1,72 +1,39 @@
-/*import { After, Before, Given, Then, When, setDefaultTimeout } from "@cucumber/cucumber";
-import { Page, expect } from "@playwright/test";
-import { initializePage } from "../../../config/browserUtils";
-import { ProductPage } from "../../../page-object/productPage";
-import { ProductData } from "../../../support/types";
-import { ShoppingCart } from "../../../page-object/ShoppingCart";
-import { navigateMainMenu } from "../../../support/navigateMainMenu";
-
-let page: Page;
-let productPage: ProductPage;
-let productData: ProductData;
-let shoppingCart: ShoppingCart;
-let message: string = 'none';
+import { Given, Then, When, setDefaultTimeout } from "@cucumber/cucumber";
+import { expect } from "@playwright/test";
+import { ICustomWorld } from "../support/customWorld";
+import { ProductData } from "../support/types";
 
 setDefaultTimeout(30 * 60 * 1000);
 
-Before({timeout: 60 * 1000},async () => {
-    
-    page = await initializePage();
-    productPage = new ProductPage(page);
-    shoppingCart = new ShoppingCart(page);
+let productData: ProductData = { productName: null, productPrice: null };
 
+When('user navigates to the "{string}" page',async function (this: ICustomWorld, url) {
     
+    await this.page!.goto(url);
 })
 
-After(async () => {
+When('user clicks the "Add to cart" link',async function (this: ICustomWorld) {
     
-    await page.close();
-})
-
-Given('user is on the "{string}" page',async (url) => {
-    
-    await productPage.goto(url);
-})
-
-When('user navigates to the "{string}" page',async (url) => {
-    
-    await productPage.goto(url);
-})
-
-When('user clicks the "Add to cart" link',async () => {
-    
-    page.once('dialog', async (dialog) => {
-        message = dialog.message();
+    this.page!.once('dialog', async (dialog) => {
+        
+        this.setMessage(dialog.message());
         await dialog.dismiss();
     });
 
-    productData = await productPage.getProductData();
-    await productPage.clickAddToCartLink();
-    await page.waitForEvent('dialog');
-    
+    this.productData = await this.productPage!.getProductData();
+    await this.productPage?.clickAddToCartLink();
+    await this.page!.waitForTimeout(500);
 })
 
-
-
-When('opens the shopping cart page',async () => {
+When('opens the shopping cart page',async function (this: ICustomWorld) {
     
-    await navigateMainMenu(page, 'Cart');
-    
+    await this.mainMenu?.clickExactLink('Cart');
 })
 
-Then('the dialog message should be "{string}"',async (expectedMessage) => {
+Then('the shopping cart should not be empty',async function (this: ICustomWorld) {
     
-    expect(message).toEqual(expectedMessage);
+    await this.page!.waitForSelector(this.shoppingCart!.getShoppingCartTable().getBodySelector(),{timeout: 5000});
+    this.shoppingCart!.getShoppingCartTable().findRows();
+    
+    expect(await this.shoppingCart!.getShoppingCartTable().getRowsCount()).toBeGreaterThan(0);
 })
-
-Then('the shopping cart is not empty',async () => {
-  
-    await page.waitForSelector(shoppingCart.getShoppingCartTable().getBodySelector(),{timeout: 5000});
-    shoppingCart.getShoppingCartTable().findRows();
-    console.log(await shoppingCart.getShoppingCartTable().getRowsCount());
-})*/
