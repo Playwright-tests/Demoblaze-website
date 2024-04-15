@@ -17,6 +17,11 @@ export class MainMenu extends BasePage {
         await this.getPage().getByRole('link', {name: linkName}).click();
     }
 
+    async clickExactLink(linkName: string): Promise<void> {
+
+        await this.getPage().getByRole('link', {name: linkName, exact: true}).click();
+    }
+
     getLinkLocator(linkName: string): Locator {
 
         return this.getPage().getByRole('link', {name: linkName});
