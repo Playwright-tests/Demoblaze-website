@@ -5,6 +5,8 @@ import { browserConfig, browserOptions } from "./config";
 import { MainMenu } from "../../../page-object/MainMenu";
 import { LoginForm } from "../../../page-object/LoginForm";
 import { ContactForm } from "../../../page-object/ContactForm";
+import { ShoppingCart } from "../../../page-object/ShoppingCart";
+import { ProductPage } from "../../../page-object/productPage";
 
 let browser: ChromiumBrowser | FirefoxBrowser | WebKitBrowser;
 
@@ -31,6 +33,8 @@ Before(async function (this: ICustomWorld) {
     this.mainMenu = new MainMenu(this.page!);
     this.loginForm = new LoginForm(this.page!);
     this.contactForm = new ContactForm(this.page!);
+    this.productPage = new ProductPage(this.page!);
+    this.shoppingCart = new ShoppingCart(this.page!);
 })
 
 After(async function (this: ICustomWorld) {
