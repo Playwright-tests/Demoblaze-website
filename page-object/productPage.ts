@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 import { BasePage } from "./BasePage"
-import { ProductData } from "../support/types";
+import { ProductData } from "../src/test/support/types";
 
 export class ProductPage extends BasePage {
 
