@@ -3,13 +3,15 @@ import { BasePage } from "./BasePage";
 
 export class MainMenu extends BasePage {
 
+    private readonly nameOfUserSelector: string;
     private readonly nameOfUserLink: Locator;
 
     constructor(page: Page) {
 
         super(page);
 
-        this.nameOfUserLink = page.locator('#nameofuser');
+        this.nameOfUserSelector = '#nameofuser';
+        this.nameOfUserLink = page.locator(this.nameOfUserSelector);
     }
 
     async clickLink(linkName: string): Promise<void> {
@@ -25,6 +27,11 @@ export class MainMenu extends BasePage {
     getLinkLocator(linkName: string): Locator {
 
         return this.getPage().getByRole('link', {name: linkName});
+    }
+
+    getNameOfUserSelector(): string {
+
+        return this.nameOfUserSelector;
     }
 
     getNameOfUserLinkLocator(): Locator {
