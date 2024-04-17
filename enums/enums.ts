@@ -9,3 +9,9 @@ export enum BrowserName {
     FIREFOX = 'FIREFOX',
     WEBKIT = 'WEBKIT'
 }
+
+export enum SHOPPING_CART_CELL {
+
+    NAME = 1,
+    PRICE
+}
