@@ -11,12 +11,22 @@ class Reporter extends CucumberJSAllureFormatter {
       {
           labels: [
             {
-              pattern: [/@feature:(.*)/],
+              pattern: [/@owner:(.*)/],
+              name: 'owner'
+            },
+            {
+              pattern: [/@epic:(.*)/],
               name: 'epic'
             },
             {
               pattern: [/@severity:(.*)/],
               name: 'severity'
+            }
+          ],
+          links: [
+            {
+              type: 'issue',
+              pattern: [/@issue:(.*)/]
             }
           ]
       },
