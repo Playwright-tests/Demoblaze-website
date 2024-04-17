@@ -1,15 +1,13 @@
-import { Given, Then, When, setDefaultTimeout } from "@cucumber/cucumber";
+import { Then, When, setDefaultTimeout } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
 import { ICustomWorld } from "../support/customWorld";
-import { ProductData } from "../support/types";
+import { SHOPPING_CART_CELL } from "../../../enums/enums";
 
 setDefaultTimeout(30 * 60 * 1000);
 
-let productData: ProductData = { productName: null, productPrice: null };
-
-When('user navigates to the "{string}" page',async function (this: ICustomWorld, url) {
+When('user navigates to the "{string}" product page',async function (this: ICustomWorld, link) {
     
-    await this.page!.goto(url);
+    await this.page!.getByRole('link', {name: link}).click();
 })
 
 When('user clicks the "Add to cart" link',async function (this: ICustomWorld) {
@@ -20,9 +18,9 @@ When('user clicks the "Add to cart" link',async function (this: ICustomWorld) {
         await dialog.dismiss();
     });
 
-    this.productData = await this.productPage!.getProductData();
     await this.productPage?.clickAddToCartLink();
     await this.page!.waitForTimeout(500);
+    this.productData?.push(await this.productPage!.getProductData());
 })
 
 When('opens the shopping cart page',async function (this: ICustomWorld) {
@@ -32,8 +30,24 @@ When('opens the shopping cart page',async function (this: ICustomWorld) {
 
 Then('the shopping cart should not be empty',async function (this: ICustomWorld) {
     
-    await this.page!.waitForSelector(this.shoppingCart!.getShoppingCartTable().getBodySelector(),{timeout: 5000});
-    this.shoppingCart!.getShoppingCartTable().findRows();
+    await this.page!.waitForSelector(this.shoppingCart!.getShoppingCartTable().getBodySelector(),{timeout: 10000});
+    await this.shoppingCart!.getShoppingCartTable().findRows();
+
+    expect(this.shoppingCart!.getShoppingCartTable().getRowsCount()).toBeGreaterThan(0);
+})
+
+Then('the number of products in the shopping cart should be {int}',async function (this: ICustomWorld, total) {
     
-    expect(await this.shoppingCart!.getShoppingCartTable().getRowsCount()).toBeGreaterThan(0);
+    expect(this.shoppingCart!.getShoppingCartTable().getRowsCount()).toEqual(total);
+})
+
+Then('the product data in the shopping cart should match the product data added to the cart',async function (this: ICustomWorld) {
+    
+    for(let i = 0; i < this.productData!.length; i++) {
+
+        expect.soft(await this.shoppingCart?.getShoppingCartTable().getCell(i, SHOPPING_CART_CELL.NAME))
+            .toEqual(this.productData![i].productName);
+        expect.soft(this.productData![i].productName)
+            .toContain(await this.shoppingCart?.getShoppingCartTable().getCell(i, SHOPPING_CART_CELL.PRICE));
+    }
 })
