@@ -26,7 +26,7 @@ export interface ICustomWorld extends World {
     shoppingCart?: ShoppingCart
 
     message?: string
-    productData?: ProductData
+    productData?: ProductData[]
 
     setMessage(given: string): void
     getMessage(): string
@@ -46,7 +46,7 @@ export class CustomWorld extends World implements ICustomWorld {
     shoppingCart?: ShoppingCart;
 
     message?: string;
-    productData?: ProductData;
+    productData? = [];
 
     setMessage(given: string): void {
         this.message! = given;
