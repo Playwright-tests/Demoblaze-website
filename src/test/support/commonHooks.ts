@@ -10,6 +10,11 @@ import { ProductPage } from "../../../page-object/productPage";
 
 let browser: ChromiumBrowser | FirefoxBrowser | WebKitBrowser;
 
+declare global {
+
+    var browser: ChromiumBrowser | FirefoxBrowser | WebKitBrowser;
+}
+
 BeforeAll(async function () {
     
     switch(browserConfig.browser) {
@@ -38,7 +43,7 @@ Before(async function (this: ICustomWorld) {
 })
 
 After(async function (this: ICustomWorld) {
-    
+
     await this.page?.close();
     await this.context?.close();
 })
