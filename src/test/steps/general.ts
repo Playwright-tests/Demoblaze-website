@@ -1,6 +1,5 @@
 import { Given, Then, When } from "@cucumber/cucumber";
 import { ICustomWorld } from "../support/customWorld";
-import { URL } from "../../../enums/enums";
 import { expect } from "@playwright/test";
 
 Given('the home page is open',{timeout: 60 * 1000},async function (this: ICustomWorld) {
@@ -10,11 +9,17 @@ Given('the home page is open',{timeout: 60 * 1000},async function (this: ICustom
 
 Given('a user is logged in',{timeout: 60 * 1000},async function (this: ICustomWorld) {
     
-    await this.page!.goto(this.parameters.baseURL);
-    await this.mainMenu?.clickLink('Log in'),
-    await this.loginForm?.setUsername('username');
-    await this.loginForm?.setPassword('password');
-    await this.loginForm?.clickLoginButton();
+    await this.loginProcess();
+})
+
+Given('products are added to the shopping cart',async function (this: ICustomWorld) {
+  
+    await this.shoppingCartProcess([this.parameters.nexus6Link, this.parameters.SamsungGalaxyS6Link]);
+})
+
+Given('the shopping cart is open',async function (this: ICustomWorld) {
+    
+    await this.mainMenu?.clickExactLink('Cart');
 })
 
 When('user clicks the logo',async function (this: ICustomWorld) {
