@@ -7,6 +7,7 @@ import { ContactForm } from "../../../page-object/ContactForm";
 import { ShoppingCart } from "../../../page-object/ShoppingCart";
 import { ProductPage } from "../../../page-object/productPage";
 import { ProductData } from "./types";
+import { credentials } from "./secret";
 
 export interface ICustomWorld extends World {
 
@@ -27,9 +28,13 @@ export interface ICustomWorld extends World {
 
     message?: string
     productData?: ProductData[]
+    numberOfProductBeforeDeleting?: number;
+
 
     setMessage(given: string): void
     getMessage(): string
+    loginProcess(): Promise<void>
+    shoppingCartProcess(links: string[]): Promise<void>
 }
 
 export class CustomWorld extends World implements ICustomWorld {
@@ -39,6 +44,7 @@ export class CustomWorld extends World implements ICustomWorld {
         super(options);
     }
 
+    page?: Page;
     mainMenu?: MainMenu;
     loginForm?: LoginForm;
     contactForm?: ContactForm;
@@ -47,6 +53,7 @@ export class CustomWorld extends World implements ICustomWorld {
 
     message?: string;
     productData? = [];
+    numberOfProductBeforeDeleting?: number;
 
     setMessage(given: string): void {
         this.message! = given;
@@ -54,6 +61,29 @@ export class CustomWorld extends World implements ICustomWorld {
 
     getMessage(): string {
         return this.message!;
+    }
+
+    async loginProcess(): Promise<void> {
+        
+        await this.page!.goto(this.parameters.baseURL);
+        await this.mainMenu?.clickLink('Log in'),
+        await this.loginForm!.setCredentials(credentials);
+        await this.loginForm?.clickLoginButton();
+        await this.page!.waitForSelector(this.mainMenu!.getNameOfUserSelector());
+    }
+
+    async shoppingCartProcess(links: string[]): Promise<void> {
+
+        this.page!.once('dialog',async (dialog) => {
+            await dialog.dismiss();
+        })
+
+        for(const link of links) {
+            
+            await this.page!.getByRole('link', {name: link}).click();
+            await this.productPage?.clickAddToCartLink();
+            await this.page!.locator('#nava').click();
+        }
     }
 
     debug = false
