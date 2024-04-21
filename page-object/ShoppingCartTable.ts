@@ -5,7 +5,7 @@ export class ShoppingCartTable extends BasePage {
 
     private readonly bodySelector: string;
     private readonly body: Locator;
-    private rows: Locator[];
+    private rows: Locator;
 
     constructor(page: Page) {
 
@@ -13,7 +13,7 @@ export class ShoppingCartTable extends BasePage {
 
         this.bodySelector = 'tbody';
         this.body = page.locator(this.bodySelector);
-        this.rows = [];
+        this.rows = {} as Locator;
     }
 
     getBodySelector(): string {
@@ -21,19 +21,24 @@ export class ShoppingCartTable extends BasePage {
         return this.bodySelector;
     }
 
-    async findRows(): Promise<void> {
+    findRows(): void {
 
-        this.rows = await this.body.locator('tr').all();
+        this.rows = this.body.locator('tr');//.all();
     }
 
     async getCell(row: number, info: number): Promise<string | null | undefined> {
 
-        return await (this.rows).at(row)?.locator('td').nth(info).textContent();
+        return await (this.rows).nth(row)?.locator('td').nth(info).textContent();
     }
 
-    getRowsCount(): number {
+    async clickDeleteButton(row: number) {
 
-        return this.rows.length;
+        await this.rows.nth(row)?.locator('td').nth(3).locator('a').click();
+    }
+
+    getRows() {
+
+        return this.body.locator('tr');
     }
 
     async text() {
