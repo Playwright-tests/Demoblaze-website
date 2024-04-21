@@ -28,6 +28,12 @@ export class LoginForm extends ModalDialog {
         await this.passwordField.fill(password);
     }
 
+    async setCredentials(credentials: any): Promise<void> {
+
+        await this.usernameField.fill(credentials.username);
+        await this.passwordField.fill(credentials.password);
+    }
+
     async getUsername(): Promise<string> {
 
         return await this.usernameField.inputValue();
