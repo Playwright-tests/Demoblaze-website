@@ -28,8 +28,6 @@ export interface ICustomWorld extends World {
 
     message?: string
     productData?: ProductData[]
-    numberOfProductBeforeDeleting?: number;
-
 
     setMessage(given: string): void
     getMessage(): string
@@ -53,7 +51,6 @@ export class CustomWorld extends World implements ICustomWorld {
 
     message?: string;
     productData? = [];
-    numberOfProductBeforeDeleting?: number;
 
     setMessage(given: string): void {
         this.message! = given;
