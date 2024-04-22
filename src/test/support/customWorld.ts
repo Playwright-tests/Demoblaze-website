@@ -5,7 +5,7 @@ import { MainMenu } from "../../../page-object/MainMenu";
 import { LoginForm } from "../../../page-object/LoginForm";
 import { ContactForm } from "../../../page-object/ContactForm";
 import { ShoppingCart } from "../../../page-object/ShoppingCart";
-import { ProductPage } from "../../../page-object/productPage";
+import { ProductPage } from "../../../page-object/ProductPage";
 import { ProductData } from "./types";
 import { credentials } from "./secret";
 
