@@ -66,8 +66,33 @@ export class PlaceOrderForm extends BasePage {
         await this.purchaseButton.click();
     }
 
-    async getName() {
+    async getName(): Promise<string> {
 
         return await this.nameField.inputValue();
+    }
+
+    async getCountry(): Promise<string> {
+
+        return await this.countryField.inputValue();
+    }
+
+    async getCity(): Promise<string> {
+
+        return await this.cityField.inputValue();
+    }
+
+    async getCreditCard(): Promise<string> {
+
+        return await this.creditCardField.inputValue();
+    }
+
+    async getMonth(): Promise<string> {
+
+        return await this.monthField.inputValue();
+    }
+
+    async getYear(): Promise<string> {
+
+        return await this.yearField.inputValue();
     }
 }
