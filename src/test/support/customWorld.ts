@@ -8,6 +8,7 @@ import { ShoppingCart } from "../../../page-object/ShoppingCart";
 import { ProductPage } from "../../../page-object/ProductPage";
 import { ProductData } from "./types";
 import { credentials } from "./secret";
+import { PlaceOrderForm } from "../../../page-object/PlaceOrderForm";
 
 export interface ICustomWorld extends World {
 
@@ -25,6 +26,7 @@ export interface ICustomWorld extends World {
     contactForm?: ContactForm
     productPage?: ProductPage
     shoppingCart?: ShoppingCart
+    placeOrderForm?: PlaceOrderForm
 
     message?: string
     productData?: ProductData[]
@@ -48,6 +50,7 @@ export class CustomWorld extends World implements ICustomWorld {
     contactForm?: ContactForm;
     productPage?: ProductPage;
     shoppingCart?: ShoppingCart;
+    placeOrderForm?: PlaceOrderForm;
 
     message?: string;
     productData? = [];
