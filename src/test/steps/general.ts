@@ -23,6 +23,12 @@ Given('the shopping cart is open',async function (this: ICustomWorld) {
     await this.mainMenu?.clickExactLink('Cart');
 })
 
+Given('the Place Order form is open',async function (this: ICustomWorld) {
+    
+    await this.mainMenu?.clickExactLink('Cart');
+    await this.page!.getByRole('button', {name: 'Place Order'}).click();
+})
+
 When('user clicks the logo',async function (this: ICustomWorld) {
     
     await this.page!.locator('#nava').click();
