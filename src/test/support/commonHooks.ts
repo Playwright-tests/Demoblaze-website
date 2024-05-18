@@ -7,6 +7,7 @@ import { LoginForm } from "../../../page-object/LoginForm";
 import { ContactForm } from "../../../page-object/ContactForm";
 import { ShoppingCart } from "../../../page-object/ShoppingCart";
 import { ProductPage } from "../../../page-object/ProductPage";
+import { PlaceOrderForm } from "../../../page-object/PlaceOrderForm";
 
 let browser: ChromiumBrowser | FirefoxBrowser | WebKitBrowser;
 
@@ -40,6 +41,7 @@ Before(async function (this: ICustomWorld) {
     this.contactForm = new ContactForm(this.page!);
     this.productPage = new ProductPage(this.page!);
     this.shoppingCart = new ShoppingCart(this.page!);
+    this.placeOrderForm = new PlaceOrderForm(this.page!);
 })
 
 After(async function (this: ICustomWorld) {
