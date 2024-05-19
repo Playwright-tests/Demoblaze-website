@@ -13,7 +13,7 @@ When('a user clicks the Purchase button when {string}',async function (this: ICu
     
     await this.handleDialogAndClickButton(async () => {
         await this.placeOrderForm!.clickPurchaseButton();
-    });
+    }, false);
 })
 
 Then('the message box about sent order should be opened',async function (this: ICustomWorld) {
