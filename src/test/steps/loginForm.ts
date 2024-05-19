@@ -11,12 +11,12 @@ Given('the Login form is open',{timeout: 30 * 60 * 1000},async function (this: I
     await this.mainMenu?.clickLink('Log in');
 });
 
-When('a user enters the "{string}" into the Username field',async function (this: ICustomWorld, username) {
+When('a user enters the {string} into the Username field',async function (this: ICustomWorld, username) {
     
     await this.loginForm?.setUsername(username);
 });
 
-When('a user enters the "{string}" into the Password field',async function (this: ICustomWorld, password) {
+When('a user enters the {string} into the Password field',async function (this: ICustomWorld, password) {
     
     expectedMaskedPassword = '*'.repeat(password.length);
     await this.loginForm?.setPassword(password);
@@ -28,18 +28,26 @@ When('clicks the "Close" button',async function (this: ICustomWorld) {
 })
 
 When('clicks the "Log in" button',async function (this: ICustomWorld) {
-    
-    this.page!.once('dialog', async (dialog) => {
-        
-        this.setMessage(dialog.message());
-        await dialog.dismiss();
-    })
 
     await this.loginForm?.clickLoginButton();
-    await this.page!.waitForTimeout(500);
 })
 
-Then('the Username field should be filled with the "{string}"', async function (this: ICustomWorld, username) {
+When('clicks the "Log in" button when {string}',async function (this: ICustomWorld, testCase: string) {
+    
+    const waitForDialog: boolean = testCase === 'using an incorrect username' || 
+                                   testCase === 'using an incorrect password' ?
+                                   true : false;     
+
+    await this.handleDialogAndClickButton(async () => {
+        await this.loginForm?.clickLoginButton();
+    }, true)
+
+    if(waitForDialog) {
+        await this.page!.waitForEvent('dialog');
+    }
+})
+
+Then('the Username field should be filled with the {string}', async function (this: ICustomWorld, username) {
     
     expect(await this.loginForm!.getUsername()).toEqual(username);
 });
@@ -64,7 +72,7 @@ Then('the name of user link on the main menu should be visible',async function (
     await expect(this.mainMenu!.getNameOfUserLinkLocator()).toBeVisible();
 })
 
-Then('the name of user link text should be "{string}"',async function (this: ICustomWorld, link) {
+Then('the name of user link text should be {string}',async function (this: ICustomWorld, link) {
     
     await expect(this.mainMenu!.getNameOfUserLinkLocator()).toHaveText(link);
 })
