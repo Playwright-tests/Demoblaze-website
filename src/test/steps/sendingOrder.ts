@@ -9,14 +9,11 @@ When('a user click the Purchase button',async function (this: ICustomWorld) {
     await this.placeOrderForm?.clickPurchaseButton();
 })
 
-When('a user clicks the Purchase button when {string} is missing',async function (this: ICustomWorld, field: string) {
+When('a user clicks the Purchase button when {string}',async function (this: ICustomWorld, term: string) {
     
-    this.page!.once('dialog', async (dialog) => {
-        
-        this.setMessage(dialog.message());
-    })
-
-    await this.placeOrderForm?.clickPurchaseButton();
+    await this.handleDialogAndClickButton(async () => {
+        await this.placeOrderForm!.clickPurchaseButton();
+    });
 })
 
 Then('the message box about sent order should be opened',async function (this: ICustomWorld) {
