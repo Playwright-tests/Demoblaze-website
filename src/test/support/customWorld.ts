@@ -9,6 +9,7 @@ import { ProductPage } from "../../../page-object/ProductPage";
 import { ProductData } from "./types";
 import { credentials } from "./secret";
 import { PlaceOrderForm } from "../../../page-object/PlaceOrderForm";
+import { SweetAlert } from "../../../page-object/SweetAlert";
 
 export interface ICustomWorld extends World {
 
@@ -27,6 +28,7 @@ export interface ICustomWorld extends World {
     productPage?: ProductPage
     shoppingCart?: ShoppingCart
     placeOrderForm?: PlaceOrderForm
+    sweetAlert?: SweetAlert;
 
     message?: string
     productData?: ProductData[]
@@ -51,6 +53,7 @@ export class CustomWorld extends World implements ICustomWorld {
     productPage?: ProductPage;
     shoppingCart?: ShoppingCart;
     placeOrderForm?: PlaceOrderForm;
+    sweetAlert?: SweetAlert;
 
     message?: string;
     productData? = [];
