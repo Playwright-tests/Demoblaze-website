@@ -31,17 +31,17 @@ export class ShoppingCartTable extends BasePage {
         return await (this.rows).nth(row)?.locator('td').nth(info).textContent();
     }
 
-    async clickDeleteButton(row: number) {
+    async clickDeleteButton(row: number): Promise<void> {
 
         await this.rows.nth(row)?.locator('td').nth(3).locator('a').click();
     }
 
-    getRows() {
+    getRows(): Locator {
 
         return this.body.locator('tr');
     }
 
-    async text() {
+    async text(): Promise<string | null> {
 
         return this.body.textContent();
     }
