@@ -8,6 +8,7 @@ import { ContactForm } from "../../../page-object/ContactForm";
 import { ShoppingCart } from "../../../page-object/ShoppingCart";
 import { ProductPage } from "../../../page-object/ProductPage";
 import { PlaceOrderForm } from "../../../page-object/PlaceOrderForm";
+import { SweetAlert } from "../../../page-object/SweetAlert";
 
 let browser: ChromiumBrowser | FirefoxBrowser | WebKitBrowser;
 
@@ -42,6 +43,7 @@ Before(async function (this: ICustomWorld) {
     this.productPage = new ProductPage(this.page!);
     this.shoppingCart = new ShoppingCart(this.page!);
     this.placeOrderForm = new PlaceOrderForm(this.page!);
+    this.sweetAlert = new SweetAlert(this.page!);
 })
 
 After(async function (this: ICustomWorld) {
