@@ -25,6 +25,13 @@ When('a user enters the {string} into the Message text area',async function (thi
     await this.contactForm?.setMessage(message);
 })
 
+When('a user clicks the "Send message" button',async function (this: ICustomWorld) {
+    
+    await this.handleDialogAndClickButton(async () => {
+        await this.contactForm?.clickSendMessageButton();  
+    }, true)
+})
+
 Then('the Contact Email field should be filled with the {string}',async function (this: ICustomWorld, email) {
     
     expect(await this.contactForm!.getEmail()).toEqual(email);
