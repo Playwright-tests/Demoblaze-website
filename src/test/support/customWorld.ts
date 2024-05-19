@@ -37,6 +37,7 @@ export interface ICustomWorld extends World {
     getMessage(): string
     loginProcess(): Promise<void>
     shoppingCartProcess(links: string[]): Promise<void>
+    handleDialogAndClickButton(func: any): Promise<void>
 }
 
 export class CustomWorld extends World implements ICustomWorld {
@@ -87,6 +88,16 @@ export class CustomWorld extends World implements ICustomWorld {
             await this.productPage?.clickAddToCartLink();
             await this.page!.locator('#nava').click();
         }
+    }
+
+    async handleDialogAndClickButton(func: any): Promise<void> {
+        
+        this.page!.once('dialog', async (dialog) => {
+        
+            this.setMessage(dialog.message());
+        })
+
+        await func();
     }
 
     debug = false
