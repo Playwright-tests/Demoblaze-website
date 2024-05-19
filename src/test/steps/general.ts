@@ -34,7 +34,7 @@ When('user clicks the logo',async function (this: ICustomWorld) {
     await this.page!.locator('#nava').click();
 })
 
-Then('the "{string}" form should be displayed',async function (this: ICustomWorld, headerText) {
+Then('the {string} form should be displayed',async function (this: ICustomWorld, headerText) {
   
     const modaDialog = new ModalDialog(this.page!, headerText);
     await expect(modaDialog.getBodyLocator()).toBeVisible({timeout: 3000});
