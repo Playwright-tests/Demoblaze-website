@@ -19,10 +19,10 @@ Feature: Shopping cart page
   Scenario Outline: Shopping cart contents
   Description Checking products in the shopping cart
 
-    When user navigates to the "<link_1>" product page
+    When user navigates to the <link_1> product page
     And user clicks the "Add to cart" link
     And user clicks the logo
-    And user navigates to the "<link_2>" product page
+    And user navigates to the <link_2> product page
     And user clicks the "Add to cart" link
     And opens the shopping cart page
     Then the shopping cart should not be empty
