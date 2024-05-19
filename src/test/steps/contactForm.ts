@@ -10,32 +10,32 @@ Given('the New message form is open',{timeout: 60 * 1000},async function (this: 
     await this.mainMenu?.clickLink('Contact');
 })
 
-When('a user enters the "{string}" into the Contact Email field',{timeout: 60 * 1000},async function (this: ICustomWorld, email) {
+When('a user enters the {string} into the Contact Email field',{timeout: 60 * 1000},async function (this: ICustomWorld, email) {
     
     await this.contactForm?.setEmail(email);
 })
 
-When('a user enters the "{string}" into the Contact Name field',{timeout: 60 * 1000},async function (this: ICustomWorld, name) {
+When('a user enters the {string} into the Contact Name field',{timeout: 60 * 1000},async function (this: ICustomWorld, name) {
     
     await this.contactForm?.setContactName(name);
 })
 
-When('a user enters the "{string}" into the Message text area',async function (this: ICustomWorld, message) {
+When('a user enters the {string} into the Message text area',async function (this: ICustomWorld, message) {
     
     await this.contactForm?.setMessage(message);
 })
 
-Then('the Contact Email field should be filled with the "{string}"',async function (this: ICustomWorld, email) {
+Then('the Contact Email field should be filled with the {string}',async function (this: ICustomWorld, email) {
     
     expect(await this.contactForm!.getEmail()).toEqual(email);
 })
 
-Then('the Contact Name field should be filled with the "{string}"',async function (this: ICustomWorld, name) {
+Then('the Contact Name field should be filled with the {string}',async function (this: ICustomWorld, name) {
 
     expect(await this.contactForm!.getContactName()).toEqual(name);
 })
 
-Then('the Message text area should be filled with the "{string}"',async function (this: ICustomWorld, message) {
+Then('the Message text area should be filled with the {string}',async function (this: ICustomWorld, message) {
     
     expect(await this.contactForm!.getMessage()).toEqual(message);
 })
