@@ -40,7 +40,7 @@ Feature: Login form
     And the name of user link text should be "Welcome axi"
 
   @LoginForm, @Fields, @Inputs, @epic:E2E @owner:Axi, @severity:critical
-  Scenario Outline: Login to account <case>
+  Scenario Outline: Login to account
     Description Verification of whether a user is not logged in when <case>
 
     When a user enters the <username> into the Username field
