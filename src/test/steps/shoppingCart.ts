@@ -5,21 +5,18 @@ import { SHOPPING_CART_CELL } from "../../../enums/enums";
 
 setDefaultTimeout(30 * 60 * 1000);
 
-When('user navigates to the "{string}" product page',async function (this: ICustomWorld, link) {
+When('user navigates to the {string} page',async function (this: ICustomWorld, link) {
     
     await this.page!.getByRole('link', {name: link}).click();
 })
 
 When('user clicks the "Add to cart" link',async function (this: ICustomWorld) {
     
-    this.page!.once('dialog', async (dialog) => {
-        
-        this.setMessage(dialog.message());
-        await dialog.dismiss();
-    });
-
-    await this.productPage?.clickAddToCartLink();
-    await this.page!.waitForEvent('dialog', {timeout: 10000});
+    await this.handleDialogAndClickButton(async () => {
+        await this.productPage?.clickAddToCartLink(); 
+    }, true)
+   
+    await this.page!.waitForEvent('dialog');
     this.productData?.push(await this.productPage!.getProductData());
 })
 
