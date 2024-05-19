@@ -6,6 +6,7 @@ export class ContactForm extends ModalDialog {
     private readonly emailField: Locator;
     private readonly contactNameField: Locator;
     private readonly messageTextArea: Locator;
+    private readonly sendMessageButton: Locator;
 
     constructor(page: Page) {
 
@@ -14,6 +15,7 @@ export class ContactForm extends ModalDialog {
         this.emailField = page.locator('#recipient-email');
         this.contactNameField = page.locator('#recipient-name');
         this.messageTextArea = page.locator('#message-text');
+        this.sendMessageButton = page.getByRole('button', {name: 'Send message'});
     }
 
     async setEmail(email: string): Promise<void> {
@@ -29,6 +31,11 @@ export class ContactForm extends ModalDialog {
     async setMessage(message: string): Promise<void> {
 
         await this.messageTextArea.fill(message);
+    }
+
+    async clickSendMessageButton(): Promise<void> {
+
+        await this.sendMessageButton.click();
     }
 
     async getEmail(): Promise<string | null> {
