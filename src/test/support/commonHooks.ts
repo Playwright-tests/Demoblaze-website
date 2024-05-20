@@ -9,13 +9,7 @@ import { ShoppingCart } from "../../../page-object/ShoppingCart";
 import { ProductPage } from "../../../page-object/ProductPage";
 import { PlaceOrderForm } from "../../../page-object/PlaceOrderForm";
 import { SweetAlert } from "../../../page-object/SweetAlert";
-import * as fs from 'fs';
-import os from 'os';
 import { writeEnvironmentToAllureReport } from "../../../reporter-config/allureEnvironmentWriter";
-var path = require('path');
-
-const allureEnvPropertiesPath = path.join('reporters', 'environment.properties');
-const allureEnvPropertiesTargetPath = path.join('allure-results', 'environment.properties');
 
 let browser: ChromiumBrowser | FirefoxBrowser | WebKitBrowser;
 
