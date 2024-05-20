@@ -3,9 +3,9 @@ Feature: Login form
   Background:
     Given the Login form is open
 
-  @LoginForm, @Fields, @Inputs, @epic:E2E @owner:Axi, @severity:critical
+  @LoginForm @Fields @Inputs @epic:E2E @owner:Axi @severity:critical
   Scenario Outline: Verification of the input of the Username field
-    Description Verification of whether the "Username" field is filled with text as expected
+    Verification of whether the "Username" field is filled with text as expected
 
     When a user enters the <username> into the Username field
     Then the Username field should be filled with the <username>
@@ -15,9 +15,9 @@ Feature: Login form
       | "username 1" |
       | "username 2" |
 
-  @LoginForm, @Fields, @Inputs, @epic:E2E @owner:Axi, @severity:critical
+  @LoginForm @Fields @Inputs @epic:E2E @owner:Axi @severity:critical
   Scenario Outline: Verification of the input of the Password field
-    Description Verification of whether the Password field is filled with text as expected
+    Verification of whether the Password field is filled with text as expected
 
     When a user enters the <password> into the Password field
     Then the Password field should be filled with password
@@ -28,20 +28,20 @@ Feature: Login form
       | "password_1" |
       | "pass_2"     |
 
-  @LoginForm, @Fields, @Inputs, @epic:E2E @owner:Axi, @severity:critical
+  @LoginForm @Fields @Inputs @epic:E2E @owner:Axi @severity:critical
   Scenario Outline: Login to account using correct credentials
-    Description Verification of whether a user is logged in using correct credentials
+    Verification of whether a user is logged in using correct credentials
 
-    When a user enters the "axi" into the Username field
-    And a user enters the "wueZYA3gftJUD@6" into the Password field
+    When a user enters the "correctUsername" into the Username field
+    And a user enters the "correctPassword" into the Password field
     And clicks the "Log in" button
     Then the Login form should be closed
     And the name of user link on the main menu should be visible
     And the name of user link text should be "Welcome axi"
 
-  @LoginForm, @Fields, @Inputs, @epic:E2E @owner:Axi, @severity:critical
-  Scenario Outline: Login to account
-    Description Verification of whether a user is not logged in when <case>
+  @LoginForm @Fields @Inputs @epic:E2E @owner:Axi @severity:critical
+  Scenario Outline: Unsuccessful login to account
+    Verification of whether a user is not logged in when <case>
 
     When a user enters the <username> into the Username field
     And a user enters the <password> into the Password field
