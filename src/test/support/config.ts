@@ -5,5 +5,5 @@ export const browserConfig = {
 
 export const browserOptions = {
 
-    headless: false
+    headless: true
 }
