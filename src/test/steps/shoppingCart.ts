@@ -5,7 +5,7 @@ import { SHOPPING_CART_CELL } from "../../../enums/enums";
 
 setDefaultTimeout(30 * 60 * 1000);
 
-When('user navigates to the {string} page',async function (this: ICustomWorld, link) {
+When('user navigates to the {string} product page',async function (this: ICustomWorld, link) {
     
     await this.page!.getByRole('link', {name: link}).click();
 })
