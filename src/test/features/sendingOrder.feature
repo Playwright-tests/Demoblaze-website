@@ -5,9 +5,9 @@ Feature: Sending the order
     And products are added to the shopping cart
     And the Place Order form is open
 
-  @PlaceOrderForm, @Fields, @epic:E2E @owner:Axi, @severity:critical
+  @PlaceOrderForm @Fields @epic:E2E @owner:Axi @severity:critical
   Scenario: Sending the order with correct data
-  Description Verification of whether an order is sent when data is correct
+  Verification of whether an order is sent when data is correct
 
     When a user enters the "John" into the Name field
     And a user enters the "Finland" into the Country field
@@ -18,9 +18,9 @@ Feature: Sending the order
     And a user click the Purchase button
     Then the message box about sent order should be opened
 
-  @PlaceOrderForm, @Fields, @epic:E2E @owner:Axi, @severity:normal
+  @PlaceOrderForm @Fields @epic:E2E @owner:Axi @severity:normal
   Scenario: Sending the order missing the name
-  Description Verification of whether an order is sent when a name is missing
+  Verification of whether an order is sent when a name is missing
 
     When a user enters the "Finland" into the Country field
     And a user enters the "Helsink" into the City field
@@ -30,9 +30,9 @@ Feature: Sending the order
     And a user clicks the Purchase button when "name is missing"
     Then the dialog message should be "Please fill out Name and Creditcard."
 
-  @PlaceOrderForm, @Fields, @epic:E2E @owner:Axi, @severity:normal
+  @PlaceOrderForm @Fields @epic:E2E @owner:Axi @severity:normal
   Scenario: Sending the order missing the credit card number
-  Description Verification of whether an order is sent when credit card number is missing
+  Verification of whether an order is sent when credit card number is missing
 
     When a user enters the "John" into the Name field
     And a user enters the "Finland" into the Country field
@@ -42,9 +42,9 @@ Feature: Sending the order
     And a user clicks the Purchase button when "credit card is missing"
     Then the dialog message should be "Please fill out Name and Creditcard."
 
-  @PlaceOrderForm, @Fields, @epic:E2E @owner:Axi, @severity:critical
+  @PlaceOrderForm @Fields @epic:E2E @owner:Axi @severity:critical
   Scenario Outline: Sending the order when the <data> is incorrect
-  Description Verification of whether an order is sent when <data> is incorrect
+  Verification of whether an order is sent when <data> is incorrect
 
     When a user enters the <firstName> into the Name field
     And a user enters the <country> into the Country field

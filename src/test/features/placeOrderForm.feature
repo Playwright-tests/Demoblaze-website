@@ -7,7 +7,7 @@ Feature: Place order form
 
   @PlaceOrderForm @Fields @Inputs @epic:E2E @owner:Axi @severity:critical
   Scenario Outline: Verification of the input of the Name field
-    Description Verification of whether the Name field is filled with text as expected
+    Verification of whether the Name field is filled with text as expected
 
     When a user enters the <name> into the Name field
     Then the Name field should be filled with the <name>
@@ -19,7 +19,7 @@ Feature: Place order form
 
   @PlaceOrderForm @Fields @Inputs @epic:E2E @owner:Axi @severity:critical
   Scenario Outline: Verification of the input of the Country field
-    Description Verification of whether the Country field is filled with text as expected
+    Verification of whether the Country field is filled with text as expected
 
     When a user enters the <country> into the Country field
     Then the Country field should be filled with the <country>
@@ -31,7 +31,7 @@ Feature: Place order form
 
   @PlaceOrderForm @Fields @Inputs @epic:E2E @owner:Axi @severity:critical
   Scenario Outline: Verification of the input of the City field
-    Description Verification of whether the City field is filled with text as expected
+    Verification of whether the City field is filled with text as expected
 
     When a user enters the <city> into the City field
     Then the City field should be filled with the <city>
@@ -43,7 +43,7 @@ Feature: Place order form
 
   @PlaceOrderForm @Fields @Inputs @epic:E2E @owner:Axi @severity:critical
   Scenario Outline: Verification of the input of the Credit card field
-    Description Verification of whether the Credit card field is filled with text as expected
+    Verification of whether the Credit card field is filled with text as expected
 
     When a user enters the <creditCard> into the Credit card field
     Then the Credit card field should be filled with the <creditCard>
@@ -55,7 +55,7 @@ Feature: Place order form
 
   @PlaceOrderForm @Fields @Inputs @epic:E2E @owner:Axi @severity:critical
   Scenario Outline: Verification of the input of the Month field
-    Description Verification of whether the Month field is filled with text as expected
+    Verification of whether the Month field is filled with text as expected
 
     When a user enters the <month> into the Month field
     Then the Month field should be filled with the <month>
@@ -67,7 +67,7 @@ Feature: Place order form
 
   @PlaceOrderForm @Fields @Inputs @epic:E2E @owner:Axi @severity:critical
   Scenario Outline: Verification of the input of the Year field
-    Description Verification of whether the Year field is filled with text as expected
+    Verification of whether the Year field is filled with text as expected
 
     When a user enters the <year> into the Year field
     Then the Year field should be filled with the <year>

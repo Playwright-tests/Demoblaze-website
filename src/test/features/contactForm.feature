@@ -3,9 +3,9 @@ Feature: The "New message" form
   Background:
     Given the New message form is open
 
-  @ContactForm, @Fields, @Inputs, @epic:E2E @owner:Axi, @severity:critical
+  @ContactForm @Fields @Inputs @epic:E2E @owner:Axi @severity:critical
   Scenario Outline: Verification of the input of the Contact Email field
-    Description Verification of whether the "Contact" field is filled with text as expected
+    Verification of whether the "Contact" field is filled with text as expected
 
     When a user enters the <email> into the Contact Email field
     Then the Contact Email field should be filled with the <email>
@@ -15,9 +15,9 @@ Feature: The "New message" form
       | "ars@gmail.com"  |
       | "ppa@domain.com" |
 
-  @ContactForm, @Fields, @Inputs, @epic:E2E @owner:Axi, @severity:critical
+  @ContactForm @Fields @Inputs @epic:E2E @owner:Axi @severity:critical
   Scenario Outline: Verification of the input of the Contact Name field
-    Description Verification of whether the "Contact Name" field is filled with text as expected
+    Verification of whether the "Contact Name" field is filled with text as expected
 
     When a user enters the <name> into the Contact Name field
     Then the Contact Name field should be filled with the <name>
@@ -28,9 +28,9 @@ Feature: The "New message" form
       | "Andrew" |
       | "Anne"   |
 
-  @ContactForm, @Fields, @Inputs, @epic:E2E @owner:Axi, @severity:critical
+  @ContactForm @Fields @Inputs @epic:E2E @owner:Axi @severity:critical
   Scenario Outline: Verification of the input of the Message text area
-    Description Verification of whether the "Message" text area is filled with text as expected
+    Verification of whether the "Message" text area is filled with text as expected
 
     When a user enters the <message> into the Message text area
     Then the Message text area should be filled with the <message>
@@ -40,9 +40,9 @@ Feature: The "New message" form
       | "This message will be send" |
       | "Hello text area!!!"        |
 
-  @ContactForm, @Fields, @Dialogs, @epic:E2E @owner:Axi, @severity:critical
+  @ContactForm @Fields @Dialogs @epic:E2E @owner:Axi @severity:critical
   Scenario Outline: Sending message using correct data
-    Description Verification of whether the message is sent when <scenario>
+    Verification of whether the message is sent when <scenario>
 
     When a user enters the <email> into the Contact Email field
     And a user enters the <name> into the Contact Name field
